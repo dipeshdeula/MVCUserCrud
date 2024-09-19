@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap@5.3.3",
+      "destination": "wwwroot/lib/bootstrap/"
+    }
+  ,
+{
+  "provider": "cdnjs",
+  "library": "flowbite@2.5.1",
+  "destination": "wwwroot/lib/flowbite/"
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jquery@3.7.1",
+  "destination": "wwwroot/lib/jquery/"
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jquery-validation-unobtrusive@4.0.0",
+  "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jquery-ajaxy@1.6.1",
+  "destination": "wwwroot/lib/jquery-ajaxy/"
+}
+]
+}

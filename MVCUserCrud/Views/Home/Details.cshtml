@@ -1,0 +1,23 @@
+﻿@model MVCUserCrud.Models.UserList
+
+<p class="text-lg font-semibold mb-4">Details Page</p>
+
+<div class="flex flex-col items-center">
+    <div class="bg-white shadow-md rounded-lg w-80">
+        <h2 class="bg-gray-200 text-xl font-bold p-4 rounded-t-lg">UserList Details</h2>
+        <div class="p-4">
+            <h3 class="text-lg font-medium mb-2">UserId: @Model.UserId</h3>
+            <h3 class="text-lg font-medium mb-2">UserName: @Model.UserName</h3>
+            <h3 class="text-lg font-medium mb-2">EmailAddress: @Model.EmailAddress</h3>
+            <h3 class="text-lg font-medium mb-2">UserAddress: @Model.UserAddress</h3>
+            <h3 class="text-lg font-medium mb-2">UserPassword: @Model.UserPassword</h3>
+            <h3 class="text-lg font-medium mb-2">UserProfile: @Model.UserProfile</h3>
+            <h3 class="text-lg font-medium mb-2">UserRole: @Model.UserRole</h3>
+            <h3 class="text-lg font-medium mb-2">UserStatus: @Model.UserStatus</h3>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Index" class="mt-4 inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">Go back</a>
+
+<a asp-action="Create" asp-controller="Home" class="text-white py-2\.5 px-5 rounded-lg bg-blue-600 hover\:bg-blue-800 focus\:ring-blue-300 focus\:outline-none focus:ring"></a>
