@@ -7,11 +7,10 @@
         <h2 class="bg-gray-200 text-xl font-bold p-4 rounded-t-lg">UserList Details</h2>
         <div class="p-4">
             <h3 class="text-lg font-medium mb-2">UserId: @Model.UserId</h3>
-            <h3 class="text-lg font-medium mb-2">UserName: @Model.UserName</h3>
             <h3 class="text-lg font-medium mb-2">EmailAddress: @Model.EmailAddress</h3>
             <h3 class="text-lg font-medium mb-2">UserAddress: @Model.UserAddress</h3>
             <h3 class="text-lg font-medium mb-2">UserPassword: @Model.UserPassword</h3>
-            <h3 class="text-lg font-medium mb-2">UserProfile: @Model.UserProfile</h3>
+            <h3 class="text-lg font-medium mb-2">UserProfile: <img src="~/UserProfile/@Model.UserProfile" alt="@Model.UserName" /></h3>
             <h3 class="text-lg font-medium mb-2">UserRole: @Model.UserRole</h3>
             <h3 class="text-lg font-medium mb-2">UserStatus: @Model.UserStatus</h3>
         </div>

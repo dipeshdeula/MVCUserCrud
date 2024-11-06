@@ -31,12 +31,24 @@ namespace MVCUserCrud.Repositories
 
         public void AddUser(UserList user)
         {
+            _appContext.Add(user);
+            _appContext.SaveChanges();
+            
+
         }
         public void UpdateUser(UserList user)
         {
+            _appContext.Update(user);
+            _appContext.SaveChanges();
         }
         public void DeleteUser(int id)
         {
+            var user = _appContext.UserLists.Find(id);
+            if (user != null)
+            { 
+                _appContext.Remove(user);
+                _appContext.SaveChanges(true);
+            }
 
 
         }

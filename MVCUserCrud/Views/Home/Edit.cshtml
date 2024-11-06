@@ -1,0 +1,59 @@
+﻿@model UserListEdit
+
+<div class="max-w-md mx-auto">
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <div>
+            <input asp-for="UserId" hidden />
+            <input asp-for="UserProfile" hidden />
+            <input asp-for="UserPassword" value="@ViewBag.psw" hidden />
+        </div>
+
+        <div class="relative mb-2">
+            <label asp-for="UserId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UserId</label>
+            <input asp-for="UserId" class="block text-empty rounded-t-lg px-2.5 pb-2.5 pt-5  w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="UserId" />
+            <span asp-validation-for="UserId" class="text-red-800"></span>
+        </div>
+
+        <div class="relative mb-2">
+            <label asp-for="UserName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+            <input asp-for="UserName" class="block text-empty rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="Username" />
+            <span asp-validation-for="UserName" class="text-red-800"></span>
+        </div>
+
+        <div class="relative mb-2">
+            <label asp-for="UserPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UserPassword</label>
+            <input asp-for="UserPassword" class="block text-empty rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="UserPassword" />
+            <span asp-validation-for="UserPassword" class="text-red-800"></span>
+        </div>
+
+        <div class="relative mb-2">
+            <label asp-for="UserAddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UserAddress</label>
+            <input asp-for="UserAddress" class="block text-empty rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="UserAddress" />
+            <span asp-validation-for="UserAddress" class="text-red-800"></span>
+        </div>
+
+        <div class="relative mb-2">
+            <label asp-for="EmailAddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">EmailAddress</label>
+            <input asp-for="EmailAddress" class="block text-empty rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="EmailAddress" />
+            <span asp-validation-for="EmailAddress" class="text-red-800"></span>
+        </div>
+
+        <div class="relative mb-2">
+            <label asp-for="UserFile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UserFile</label>
+            <input asp-for="UserFile" type="file" class="block text-empty rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+            <span asp-validation-for="UserFile" class="text-red-800"></span>
+        </div>
+
+        <div class="relative mb-2">
+            <label asp-for="UserRole" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UserRole</label>
+            <input asp-for="UserRole" class="block text-empty rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="UserRole" />
+            <span asp-validation-for="UserRole" class="text-red-800"></span>
+        </div>
+
+        <div class="my-3">
+            <input type="submit" value="Submit" class="text-white bg-blue-600 hover:bg-blue-800 py-3 px-5 focus:ring-blue-300 rounded-lg" />
+        </div>
+    </form>
+</div>

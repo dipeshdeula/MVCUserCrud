@@ -83,7 +83,87 @@ namespace MVCUserCrud.Controllers
                 }
                 edit.UserProfile = filename;
             }
-            return Json("Success");
+            //mapping
+            UserList u = new()
+            { 
+                UserId = edit.UserId,
+                EmailAddress = edit.EmailAddress,
+                UserAddress = edit.UserAddress,
+                UserName = edit.UserName,
+                UserPassword = edit.UserPassword,
+                UserProfile = edit.UserProfile,
+                UserRole = edit.UserRole,
+                UserStatus = true
+            };
+            if (u != null)
+            {
+                _userService.AddUser(u);
+                // return Json("Success");
+                return Content("success");
+
+            }
+            else {
+
+               // return Json("fail");
+                return Content("fail");
+            }
+           
+        }
+
+        [HttpGet]
+        public IActionResult Edit(string id)
+        {
+            int uid = Convert.ToInt32(_protector.Unprotect(id));
+            var u = _appContext.UserLists.Where(x=>x.UserId == uid).FirstOrDefault();
+
+            UserListEdit e = new()
+            {
+                UserId = u.UserId,
+                UserName = u.UserName,
+                UserPassword = u.UserPassword,
+                EmailAddress = u.EmailAddress,
+                UserAddress = u.UserAddress,
+                UserProfile = u.UserProfile,
+                UserRole = u.UserRole,
+                UserStatus = u.UserStatus,
+
+               
+
+            };
+            ViewData["psw"] = u.UserPassword;
+            return View(e);
+        
+        }
+
+        [HttpPost]
+        public IActionResult Edit(UserListEdit edit)
+        {
+            //file Handling for updation
+            if (edit.UserFile != null)
+            {
+                string filename = "UpdatedImage" + Guid.NewGuid() + Path.GetExtension(edit.UserFile.FileName);
+                string filePath = Path.Combine(_env.WebRootPath, "UserProfile", filename);
+                using (FileStream str = new FileStream(filePath, FileMode.Create))
+                {
+                    edit.UserFile.CopyTo(str);
+                }
+                edit.UserProfile = filename;
+            }
+            //mapping
+            UserList u = new()
+            {
+                UserId = edit.UserId,
+                EmailAddress = edit.EmailAddress,
+                UserAddress = edit.UserAddress,
+                UserName = edit.UserName,
+                UserPassword = edit.UserPassword,
+                UserProfile = edit.UserProfile,
+                UserRole = edit.UserRole,
+                UserStatus = true
+            };
+            _userService.UpdateUser(u);
+            return Json(edit);
+
         }
     }
 }

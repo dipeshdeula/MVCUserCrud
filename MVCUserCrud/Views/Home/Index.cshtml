@@ -32,11 +32,14 @@
                         <td class="border border-gray-400 px-4 py-2">@userDetails.EmailAddress</td>
                         <td class="border border-gray-400 px-4 py-2">@userDetails.UserPassword</td>
                         <td class="border border-gray-400 px-4 py-2">@userDetails.UserAddress</td>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.UserProfile</td>
+                        <td class="border border-gray-400 px-4 py-2">
+                            <img src="~/UserProfile/@userDetails.UserProfile" alt="User Profile" class="w-16 h-16 object-cover rounded-full" />
+                        </td>
                         <td class="border border-gray-400 px-4 py-2">@userDetails.UserRole</td>
                         <td class="border border-gray-400 px-4 py-2">@userDetails.UserStatus</td>
                         <td class="border border-gray-400 px-4 py-2">
-                            <a asp-action="Details" asp-route-id="@userDetails.EncId" class="text-blue-500 hover:text-blue-700">Details</a>
+                            <a asp-action="Details" asp-route-id="@userDetails.EncId" class="bg-gray-500 mx-auto py-[5px] rounded-md shadow-lg text-black-50 hover:text-blue-700">Details</a>
+                            <a asp-action="Edit" asp-route-id="@userDetails.EncId" class="bg-blue-500 mx-auto py-[5px] rounded-md shadow-lg text-white hover\:bg-blue-900">Edit</a>
                         </td>
                     </tr>
                 }
