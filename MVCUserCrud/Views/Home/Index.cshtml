@@ -1,51 +1,27 @@
-﻿@model List<MVCUserCrud.Models.UserListEdit>
+﻿
+<div class="mt-5">
+    <a asp-action="Create" asp-controller="Home" class="text-white py-2.5 px-5 mt-10 rounded-lg bg-blue-600 hover:bg-blue-800 focus:ring-blue-300 focus:outline-none focus:ring">Add new User</a>
 
-<div class="d-flex flex-wrap flex-md-row justify-center mt-10">
-    @if (Model == null || !Model.Any())
-    {
-        <div class="text-red-600">
-            <p>Data not found</p>
-        </div>
-    }
-    else
-    {
-        <table class="table-auto border-collapse border border-gray-400 mt-10">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="border border-gray-400 px-4 py-2">UserId</th>
-                    <th class="border border-gray-400 px-4 py-2">UserName</th>
-                    <th class="border border-gray-400 px-4 py-2">EmailAddress</th>
-                    <th class="border border-gray-400 px-4 py-2">UserPassword</th>
-                    <th class="border border-gray-400 px-4 py-2">UserAddress</th>
-                    <th class="border border-gray-400 px-4 py-2">UserProfile</th>
-                    <th class="border border-gray-400 px-4 py-2">UserRole</th>
-                    <th class="border border-gray-400 px-4 py-2">UserStatus</th>
-                    <th class="border border-gray-400 px-4 py-2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var userDetails in Model)
-                {
-                    <tr>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.UserId</td>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.UserName</td>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.EmailAddress</td>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.UserPassword</td>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.UserAddress</td>
-                        <td class="border border-gray-400 px-4 py-2">
-                            <img src="~/UserProfile/@userDetails.UserProfile" alt="User Profile" class="w-16 h-16 object-cover rounded-full" />
-                        </td>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.UserRole</td>
-                        <td class="border border-gray-400 px-4 py-2">@userDetails.UserStatus</td>
-                        <td class="border border-gray-400 px-4 py-2">
-                            <a asp-action="Details" asp-route-id="@userDetails.EncId" class="bg-gray-500 mx-auto py-[5px] rounded-md shadow-lg text-black-50 hover:text-blue-700">Details</a>
-                            <a asp-action="Edit" asp-route-id="@userDetails.EncId" class="bg-blue-500 mx-auto py-[5px] rounded-md shadow-lg text-white hover\:bg-blue-900">Edit</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+    <a asp-action="GetUserList" asp-controller="Home" id="btn-getuser" data-ajax="true" data-ajax-method="get" data-ajax-update="#getUsers" data-ajax-loading="#load" hidden>Get User</a>
+
+    <div id="load" class="max-w-md mx-auto">
+        loading....
+    </div>
+
 </div>
 
-<a asp-action="Create" asp-controller="Home" class="text-white py-2.5 px-5 mt-10 rounded-lg bg-blue-600 hover:bg-blue-800 focus:ring-blue-300 focus:outline-none focus:ring">Add new User</a>
+<div class="d-flex flex-wrap flex-md-row justify-center mt-10" id="getUsers">
+  
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#btn-getuser').click();
+
+        DeleteUser = function () {
+            alert("User Deleted Successfully!");
+            $('#btn-getuser').click();
+        }
+    });
+  
+</script>

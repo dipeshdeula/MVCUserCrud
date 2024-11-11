@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using MVCUserCrud.Models;
 using MVCUserCrud.Security;
 using MVCUserCrud.Services;
@@ -16,7 +15,7 @@ namespace MVCUserCrud.Controllers
         private readonly IWebHostEnvironment _env;
 
         public HomeController(IUserService userService, DataSecurityProvider datakey,
-            IDataProtectionProvider provider, MvcuserCrudContext appContext,IWebHostEnvironment env)
+            IDataProtectionProvider provider, MvcuserCrudContext appContext, IWebHostEnvironment env)
         {
             _userService = userService;
             _protector = provider.CreateProtector(datakey.DataSecurityKey);
@@ -25,6 +24,24 @@ namespace MVCUserCrud.Controllers
         }
 
         public IActionResult Index()
+        {
+           /* var users = _userService.GetUsers();
+            var userData = users.Select(e => new UserListEdit
+            {
+                UserId = e.UserId,
+                UserName = e.UserName,
+                EmailAddress = e.EmailAddress,
+                UserAddress = e.UserAddress,
+                UserPassword = e.UserPassword,
+                UserProfile = e.UserProfile,
+                EncId = _protector.Protect(Convert.ToString(e.UserId)),
+                UserRole = e.UserRole
+
+            }).ToList();*/
+            return View();
+        }
+
+        public IActionResult GetUserList()
         {
             var users = _userService.GetUsers();
             var userData = users.Select(e => new UserListEdit
@@ -39,7 +56,7 @@ namespace MVCUserCrud.Controllers
                 UserRole = e.UserRole
 
             }).ToList();
-            return View(userData);
+            return PartialView("_GetUserList",userData);
         }
 
         public IActionResult Details(string id)
@@ -74,8 +91,8 @@ namespace MVCUserCrud.Controllers
 
             //file Handling
             if (edit.UserFile != null)
-            { 
-                string filename = maxId.ToString()+ Guid.NewGuid() + Path.GetExtension(edit.UserFile.FileName);
+            {
+                string filename = maxId.ToString() + Guid.NewGuid() + Path.GetExtension(edit.UserFile.FileName);
                 string filePath = Path.Combine(_env.WebRootPath, "UserProfile", filename);
                 using (FileStream str = new FileStream(filePath, FileMode.Create))
                 {
@@ -85,7 +102,7 @@ namespace MVCUserCrud.Controllers
             }
             //mapping
             UserList u = new()
-            { 
+            {
                 UserId = edit.UserId,
                 EmailAddress = edit.EmailAddress,
                 UserAddress = edit.UserAddress,
@@ -102,19 +119,20 @@ namespace MVCUserCrud.Controllers
                 return Content("success");
 
             }
-            else {
+            else
+            {
 
-               // return Json("fail");
+                // return Json("fail");
                 return Content("fail");
             }
-           
+
         }
 
         [HttpGet]
         public IActionResult Edit(string id)
         {
             int uid = Convert.ToInt32(_protector.Unprotect(id));
-            var u = _appContext.UserLists.Where(x=>x.UserId == uid).FirstOrDefault();
+            var u = _appContext.UserLists.Where(x => x.UserId == uid).FirstOrDefault();
 
             UserListEdit e = new()
             {
@@ -127,12 +145,12 @@ namespace MVCUserCrud.Controllers
                 UserRole = u.UserRole,
                 UserStatus = u.UserStatus,
 
-               
+
 
             };
             ViewData["psw"] = u.UserPassword;
             return View(e);
-        
+
         }
 
         [HttpPost]
@@ -161,9 +179,42 @@ namespace MVCUserCrud.Controllers
                 UserRole = edit.UserRole,
                 UserStatus = true
             };
-            _userService.UpdateUser(u);
-            return Json(edit);
+
+            if (u != null)
+            {
+                _userService.UpdateUser(u);
+                // return Json("Success");
+                return Content("success");
+
+            }
+            else
+            {
+
+                // return Json("fail");
+                return Content("fail");
+            }
+
+            // return Json(edit);
+
 
         }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _userService.DeleteUser(id);
+                return Content("success");
+
+            }
+            catch (Exception ex)
+            {
+                return Json(ex, "Failed");
+            }
+
+
+        }
+        }
     }
-}
+ 
